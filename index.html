@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaxiNote — облік поїздок таксиста</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🚕 TaxiNote</h1>
+        <p>Облік поїздок і заробітку таксиста з усіх платформ в одному місці</p>
+    </header>
+
+    <main>
+        <!-- Форма додавання нової поїздки -->
+        <section class="card">
+            <h2>Нова поїздка</h2>
+            <form id="tripForm">
+                <label>Дата
+                    <input type="date" id="date" required>
+                </label>
+
+                <label>Платформа
+                    <select id="platform">
+                        <option>Uklon</option>
+                        <option>Bolt</option>
+                        <option>Uber</option>
+                        <option>Приватне замовлення</option>
+                    </select>
+                </label>
+
+                <label>Сума, грн
+                    <input type="number" id="price" min="1" step="1" placeholder="напр. 150" required>
+                </label>
+
+                <label>Відстань, км
+                    <input type="number" id="distance" min="0.1" step="0.1" placeholder="напр. 7.5" required>
+                </label>
+
+                <label>Оплата
+                    <select id="payment">
+                        <option>Готівка</option>
+                        <option>Картка</option>
+                    </select>
+                </label>
+
+                <button type="submit">Додати поїздку</button>
+            </form>
+        </section>
+
+        <!-- Налаштування авто для розрахунку витрат на пальне -->
+        <section class="card">
+            <h2>Налаштування авто</h2>
+            <div class="settings">
+                <label>Витрата пального, л/100 км
+                    <input type="number" id="consumption" min="0" step="0.1">
+                </label>
+                <label>Ціна пального, грн/л
+                    <input type="number" id="fuelPrice" min="0" step="0.1">
+                </label>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="card">
+            <div class="card-title">
+                <h2>Статистика</h2>
+                <select id="period">
+                    <option value="today">Сьогодні</option>
+                    <option value="all">За весь час</option>
+                </select>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><b id="statCount">0</b><span>поїздок</span></div>
+                <div class="stat"><b id="statIncome">0</b><span>дохід, грн</span></div>
+                <div class="stat"><b id="statDistance">0</b><span>пробіг, км</span></div>
+                <div class="stat"><b id="statFuel">0</b><span>пальне, грн</span></div>
+                <div class="stat profit"><b id="statProfit">0</b><span>чистий прибуток, грн</span></div>
+                <div class="stat"><b id="statAverage">0</b><span>середній чек, грн</span></div>
+            </div>
+
+            <h3>Дохід за платформами</h3>
+            <ul id="platformList"></ul>
+        </section>
+
+        <!-- Таблиця поїздок -->
+        <section class="card">
+            <h2>Список поїздок</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Платформа</th>
+                        <th>Сума</th>
+                        <th>Км</th>
+                        <th>Оплата</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tripList"></tbody>
+            </table>
+            <p id="emptyText">Поїздок ще немає</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>TaxiNote © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
